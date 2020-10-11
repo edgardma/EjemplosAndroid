@@ -3,7 +3,6 @@ package pe.com.dyd.example.miedadcanina;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     int edadInt = Integer.parseInt(edadString);
                     edadInt = edadInt * CANT_ANIOS_PERRO;
-                    answerText.setText("Si fueras perro, tu edad sería de: " + edadInt);
+                    String respuesta = getString(R.string.answer);
+                    answerText.setText(String.format(respuesta, String.valueOf(edadInt)));
                     Log.i(TAG, "Se calculó la edad");
                 } catch (NumberFormatException e) {
                     Log.w(TAG, "Se ingresó un texto que no es número.");
-                    Toast.makeText(MainActivity.this, "Por favor, ingrese un número entero", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.error_message), Toast.LENGTH_LONG).show();
                 }
             }
         });
