@@ -11,6 +11,7 @@
     tools:context=".DetailActivity">
 
     <TextView
+        android:id="@+id/hero_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Esta es un DetailActivity"/>
