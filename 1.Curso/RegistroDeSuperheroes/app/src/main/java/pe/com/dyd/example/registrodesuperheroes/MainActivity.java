@@ -8,14 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import pe.com.dyd.example.registrodesuperheroes.bean.Superheroe;
+
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NAME = "name";
-    public static final String LAST_NAME = "last_name";
-    public static final String HERO_NAME = "hero_name";
-    public static final String AGE = "age";
-    public static final String ADDRESS = "address";
-    public static final String CITY = "city";
+    public static final String SUPER_HERO_KEY = "super_hero";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +33,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
 
-                detailIntent.putExtra(NAME, nameEdit.getText().toString());
-                detailIntent.putExtra(LAST_NAME, lastNameEdit.getText().toString());
-                detailIntent.putExtra(HERO_NAME, heroNameEdit.getText().toString());
-                detailIntent.putExtra(AGE, ageEdit.getText().toString());
-                detailIntent.putExtra(ADDRESS, addressEdit.getText().toString());
-                detailIntent.putExtra(CITY, cityEdit.getText().toString());
+                final Superheroe ironMan = new Superheroe(nameEdit.getText().toString(),
+                        lastNameEdit.getText().toString(),
+                        heroNameEdit.getText().toString(),
+                        ageEdit.getText().toString(),
+                        addressEdit.getText().toString(),
+                        cityEdit.getText().toString());
+
+                detailIntent.putExtra(SUPER_HERO_KEY, ironMan);
 
                 startActivity(detailIntent);
             }

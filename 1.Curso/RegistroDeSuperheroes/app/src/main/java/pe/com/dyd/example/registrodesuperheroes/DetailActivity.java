@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import pe.com.dyd.example.registrodesuperheroes.bean.Superheroe;
+
 public class DetailActivity extends AppCompatActivity {
 
     @Override
@@ -14,19 +16,17 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        String name = extras.getString(MainActivity.NAME);
-        String lastName = extras.getString(MainActivity.LAST_NAME);
-        String heroName = extras.getString(MainActivity.HERO_NAME);
-        String age = extras.getString(MainActivity.AGE);
-        String address = extras.getString(MainActivity.ADDRESS);
-        String city = extras.getString(MainActivity.CITY);
+        Superheroe ironMan = extras.getParcelable(MainActivity.SUPER_HERO_KEY);
 
         TextView heroData = (TextView)findViewById(R.id.hero_data);
-        heroData.setText(name + ", " +
-                lastName + ", " +
-                heroName + ", " +
-                age + ", " +
-                address + ", " +
-                city);
+
+        if (ironMan != null) {
+            heroData.setText(ironMan.getName() + ", " +
+                    ironMan.getLastName() + ", " +
+                    ironMan.getHeroName() + ", " +
+                    ironMan.getAge() + ", " +
+                    ironMan.getAddress() + ", " +
+                    ironMan.getCity());
+        }
     }
 }
