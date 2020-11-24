@@ -1,18 +1,25 @@
 package pe.com.dyd.example.registrodesuperheroes;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import pe.com.dyd.example.registrodesuperheroes.bean.Superheroe;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String SUPER_HERO_KEY = "super_hero";
+    private static final int CAMERA_REQUEST_CODE = 1000;
+    private ImageView heroImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
         EditText ageEdit = (EditText)findViewById(R.id.age_edit);
         EditText addressEdit = (EditText)findViewById(R.id.address_edit);
         EditText cityEdit = (EditText)findViewById(R.id.city_edit);
+
+        heroImage = (ImageView)findViewById(R.id.hero_image);
+
+        heroImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamara();
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +61,36 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(detailIntent);
             }
         });
+    }
+
+    private void openCamara() {
+        try {
+            Log.i("openCamara", "Inicio");
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+            Log.i("openCamara", "Fin");
+        }catch (Exception ex) {
+            Log.w("openCamara", "Error: " + ex.toString());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        try {
+            Log.i("onActivityResult", "Inicio");
+            super.onActivityResult(requestCode, resultCode, data);
+
+            if (requestCode == CAMERA_REQUEST_CODE) {
+                Bundle extras = data.getExtras();
+                Bitmap bitmap = (Bitmap)extras.get("data");
+
+                heroImage.setImageBitmap(bitmap);
+            }
+
+            Log.i("onActivityResult", "Fin");
+        }catch (Exception ex) {
+            Log.w("onActivityResult", "Error: " + ex.toString());
+        }
+
     }
 }
