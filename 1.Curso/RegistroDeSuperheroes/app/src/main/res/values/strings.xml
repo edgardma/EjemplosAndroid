@@ -7,4 +7,9 @@
     <string name="address_edit_hint">Dirección</string>
     <string name="city_edit_hint">Ciudad</string>
     <string name="register_button_edit">Registrar</string>
+    <string name="country_edit_hint">Pais</string>
+    <string name="zip_code_edit_hint">ZIP</string>
+    <string name="marital_status_edit_hint">Estado Civil</string>
+    <string name="job_edit_hint">Trabajo</string>
+    <string name="blood_type_hint">Tipo de Sangre</string>
 </resources>
