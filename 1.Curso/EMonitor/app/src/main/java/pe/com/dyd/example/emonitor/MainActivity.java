@@ -7,10 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import pe.com.dyd.example.emonitor.adapter.EarthquakeAdapter;
@@ -34,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, R.layout.eq_list_item, earthquakeList);
         earthquake_list_view.setAdapter(earthquakeAdapter);
+
+        try {
+            downloadData(new URL("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private String downloadData(URL url) throws IOException {
@@ -66,7 +75,21 @@ public class MainActivity extends AppCompatActivity {
         return jsonResponse;
     }
 
-    private String readFromStream(InputStream inputStream) {
-        return "";
+    private String readFromStream(InputStream inputStream) throws IOException {
+        StringBuilder output = new StringBuilder();
+
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader =
+                    new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+            BufferedReader reader = new BufferedReader(inputStreamReader);
+            String line = reader.readLine();
+
+            while (line != null) {
+                output.append(line);
+                line = reader.readLine();
+            }
+        }
+
+        return output.toString();
     }
 }
