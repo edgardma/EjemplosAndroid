@@ -32,18 +32,32 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeEntity> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewHolder holder;
 
-        View rootView = inflater.inflate(R.layout.eq_list_item, null);
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        TextView magnitudeTextView = (TextView) rootView.findViewById(R.id.eq_list_item_magnitude);
-        TextView placeTextView = (TextView) rootView.findViewById(R.id.eq_list_item_place);
+            convertView = inflater.inflate(layaoudId, null);
+
+            holder = new ViewHolder();
+            holder.magnitudeTextView = (TextView) convertView.findViewById(R.id.eq_list_item_magnitude);
+            holder.placeTextView = (TextView) convertView.findViewById(R.id.eq_list_item_place);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         EarthquakeEntity earthquakeEntity = eqList.get(position);
 
-        magnitudeTextView.setText(earthquakeEntity.getMagnitude());
-        placeTextView.setText(earthquakeEntity.getPlace());
+        holder.magnitudeTextView.setText(earthquakeEntity.getMagnitude());
+        holder.placeTextView.setText(earthquakeEntity.getPlace());
 
-        return rootView;
+        return convertView;
+    }
+
+    private class ViewHolder {
+        public TextView magnitudeTextView;
+        public TextView placeTextView;
     }
 }

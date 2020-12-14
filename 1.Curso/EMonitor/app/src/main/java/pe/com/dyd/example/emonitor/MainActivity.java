@@ -21,26 +21,13 @@ public class MainActivity extends AppCompatActivity {
         ListView earthquake_list_view = (ListView) findViewById(R.id.earthquake_list_view);
         ArrayList<EarthquakeEntity> earthquakeList = new ArrayList<>();
 
-        earthquakeList.add(new EarthquakeEntity("4.6", "97 km S of Wonosari, Indonesia"));
-        earthquakeList.add(new EarthquakeEntity("2.3", "16 km S of Joshua Tree, CA"));
-        earthquakeList.add(new EarthquakeEntity("3.1", "97 km S of Wonosari, Indonesia"));
+        for (int i = 0; i < 10; i++) {
+            earthquakeList.add(new EarthquakeEntity("4.6", "97 km S of Wonosari, Indonesia"));
+            earthquakeList.add(new EarthquakeEntity("2.3", "16 km S of Joshua Tree, CA"));
+            earthquakeList.add(new EarthquakeEntity("3.1", "97 km S of Wonosari, Indonesia"));
+        }
 
         EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, R.layout.eq_list_item, earthquakeList);
         earthquake_list_view.setAdapter(earthquakeAdapter);
-        /*
-        ListView earthquake_list_view = (ListView) findViewById(R.id.earthquake_list_view);
-        ArrayList<String> countryList = new ArrayList<>();
-
-        countryList.add("México");
-        countryList.add("Venezuela");
-        countryList.add("Colombia");
-        countryList.add("España");
-        countryList.add("Perú");
-
-        ArrayAdapter<String> countryAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, countryList);
-        earthquake_list_view.setAdapter(countryAdapter);
-
-         */
     }
 }
