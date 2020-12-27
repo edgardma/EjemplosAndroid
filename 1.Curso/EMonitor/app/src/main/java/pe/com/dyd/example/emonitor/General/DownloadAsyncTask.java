@@ -14,6 +14,12 @@ import java.nio.charset.Charset;
 
 public class DownloadAsyncTask extends AsyncTask<URL, Void, String> {
 
+    public DownloadEqsInterface delegate;
+
+    public interface DownloadEqsInterface {
+        void onEqsDownloaded(String eqsData);
+    }
+
     @Override
     protected String doInBackground(URL... urls) {
         String eqData = "";
@@ -35,6 +41,8 @@ public class DownloadAsyncTask extends AsyncTask<URL, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+
+        delegate.onEqsDownloaded(s);
 
         Log.d("DownloadAsyncTask", s);
     }
