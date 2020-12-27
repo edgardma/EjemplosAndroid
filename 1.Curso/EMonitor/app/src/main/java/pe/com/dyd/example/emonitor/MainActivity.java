@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import pe.com.dyd.example.emonitor.General.DownloadAsyncTask;
@@ -54,5 +50,21 @@ public class MainActivity extends AppCompatActivity implements DownloadAsyncTask
     @Override
     public void onEqsDownloaded(String eqsData) {
         Log.d("MainActivity", eqsData);
+
+        try {
+            JSONObject jsonObject = new JSONObject(eqsData);
+            JSONArray featuresJsonArray =  jsonObject.getJSONArray("features");
+
+            for(int i = 0; i < featuresJsonArray.length(); i++) {
+                JSONObject featureJsonObject = featuresJsonArray.getJSONObject(i);
+                JSONObject propertiesJsonObject = featureJsonObject.getJSONObject("properties");
+                double magnitude = propertiesJsonObject.getDouble("mag");
+                String place = propertiesJsonObject.getString("place");
+
+                Log.d("MainActivity", magnitude + "-" + place);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
