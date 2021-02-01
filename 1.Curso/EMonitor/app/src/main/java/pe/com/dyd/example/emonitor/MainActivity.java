@@ -4,14 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,14 +19,14 @@ import pe.com.dyd.example.emonitor.entity.EarthquakeEntity;
 public class MainActivity extends AppCompatActivity implements DownloadAsyncTask.DownloadEqsInterface {
 
     public static final String SELECT_EARTHQUEAKE = "select_earthqueake";
-    private ListView earthquake_list_view;
+    private ListView earthquakeListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        earthquake_list_view = (ListView) findViewById(R.id.earthquake_list_view);
+        earthquakeListView = (ListView) findViewById(R.id.earthquake_list_view);
 
         DownloadAsyncTask downloadAsyncTask = null;
         try {
@@ -44,31 +39,11 @@ public class MainActivity extends AppCompatActivity implements DownloadAsyncTask
     }
 
     @Override
-    public void onEqsDownloaded(String eqsData) {
-        Log.d("MainActivity", eqsData);
-        ArrayList<EarthquakeEntity> earthquakeList = new ArrayList<>();
+    public void onEqsDownloaded(ArrayList<EarthquakeEntity> earthquakeList) {
+        final EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, R.layout.eq_list_item, earthquakeList);
+        earthquakeListView.setAdapter(earthquakeAdapter);
 
-        try {
-            JSONObject jsonObject = new JSONObject(eqsData);
-            JSONArray featuresJsonArray =  jsonObject.getJSONArray("features");
-
-            for(int i = 0; i < featuresJsonArray.length(); i++) {
-                JSONObject featureJsonObject = featuresJsonArray.getJSONObject(i);
-                JSONObject propertiesJsonObject = featureJsonObject.getJSONObject("properties");
-                Double magnitude = propertiesJsonObject.getDouble("mag");
-                String place = propertiesJsonObject.getString("place");
-                earthquakeList.add(new EarthquakeEntity(magnitude, place));
-
-                Log.d("MainActivity", magnitude + "-" + place);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        EarthquakeAdapter earthquakeAdapter = new EarthquakeAdapter(this, R.layout.eq_list_item, earthquakeList);
-        earthquake_list_view.setAdapter(earthquakeAdapter);
-
-        earthquake_list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 EarthquakeEntity selectEarthquakeEntity = earthquakeAdapter.getItem(position);
