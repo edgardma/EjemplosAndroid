@@ -65,11 +65,20 @@ public class DownloadAsyncTask extends AsyncTask<URL, Void, ArrayList<Earthquake
             for(int i = 0; i < featuresJsonArray.length(); i++) {
                 JSONObject featureJsonObject = featuresJsonArray.getJSONObject(i);
                 JSONObject propertiesJsonObject = featureJsonObject.getJSONObject("properties");
+
                 Double magnitude = propertiesJsonObject.getDouble("mag");
                 String place = propertiesJsonObject.getString("place");
-                earthquakeList.add(new EarthquakeEntity(magnitude, place));
+                Long timestamp = propertiesJsonObject.getLong("time");
 
-                Log.d("DownloadAsyncTask", magnitude + "-" + place);
+                JSONObject geometryJsonObject = featureJsonObject.getJSONObject("geometry");
+                JSONArray coordinatesJsonArray = geometryJsonObject.getJSONArray("coordinates");
+
+                String longitude = coordinatesJsonArray.getString(0);
+                String latitude = coordinatesJsonArray.getString(1);
+
+                earthquakeList.add(new EarthquakeEntity(timestamp, magnitude, place, longitude, latitude));
+
+                Log.d("DownloadAsyncTask", longitude + "-" + latitude);
             }
         } catch (JSONException e) {
             e.printStackTrace();

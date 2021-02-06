@@ -20,8 +20,12 @@ public class DetailActivity extends AppCompatActivity {
         EarthquakeEntity earthquakeEntity = extras.getParcelable(MainActivity.SELECT_EARTHQUEAKE);
 
         if (earthquakeEntity != null) {
-            eqDetailTextView.setText(earthquakeEntity.getMagnitude() + " : " +
-                    earthquakeEntity.getPlace());
+            eqDetailTextView.setText(earthquakeEntity.getDateTime() + "\n" +
+                    "Mag: " + earthquakeEntity.getMagnitude() + "\n" +
+                    "Place: " + earthquakeEntity.getPlace() + "\n" +
+                    "Lon: " + earthquakeEntity.getLongitude() + "\n" +
+                    "Lat: " + earthquakeEntity.getLatitude()
+            );
         }
     }
 }

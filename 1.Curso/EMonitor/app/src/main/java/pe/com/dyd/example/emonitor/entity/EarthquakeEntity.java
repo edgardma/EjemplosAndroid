@@ -4,12 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class EarthquakeEntity implements Parcelable {
+    private Long dateTime;
     private Double magnitude;
     private String place;
+    private String longitude;
+    private String latitude;
 
-    public EarthquakeEntity(Double magnitude, String place) {
+    public EarthquakeEntity(Long dateTime, Double magnitude, String place, String longitude, String latitude) {
+        this.dateTime = dateTime;
         this.magnitude = magnitude;
         this.place = place;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public Double getMagnitude() {
@@ -29,8 +35,11 @@ public class EarthquakeEntity implements Parcelable {
     }
 
     protected EarthquakeEntity(Parcel in) {
+        dateTime = in.readLong();
         magnitude = in.readByte() == 0x00 ? null : in.readDouble();
         place = in.readString();
+        longitude = in.readString();
+        latitude = in.readString();
     }
 
     @Override
@@ -40,6 +49,7 @@ public class EarthquakeEntity implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(dateTime);
         if (magnitude == null) {
             dest.writeByte((byte) (0x00));
         } else {
@@ -47,6 +57,8 @@ public class EarthquakeEntity implements Parcelable {
             dest.writeDouble(magnitude);
         }
         dest.writeString(place);
+        dest.writeString(longitude);
+        dest.writeString(latitude);
     }
 
     @SuppressWarnings("unused")
@@ -61,4 +73,28 @@ public class EarthquakeEntity implements Parcelable {
             return new EarthquakeEntity[size];
         }
     };
+
+    public Long getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Long dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
 }
