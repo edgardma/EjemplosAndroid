@@ -14,18 +14,21 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        TextView eqDetailTextView = (TextView) findViewById(R.id.eq_detail_text_view);
-
         Bundle extras = getIntent().getExtras();
         EarthquakeEntity earthquakeEntity = extras.getParcelable(MainActivity.SELECT_EARTHQUEAKE);
 
         if (earthquakeEntity != null) {
-            eqDetailTextView.setText(earthquakeEntity.getDateTime() + "\n" +
-                    "Mag: " + earthquakeEntity.getMagnitude() + "\n" +
-                    "Place: " + earthquakeEntity.getPlace() + "\n" +
-                    "Lon: " + earthquakeEntity.getLongitude() + "\n" +
-                    "Lat: " + earthquakeEntity.getLatitude()
-            );
+            TextView magnitudeTextView = (TextView) findViewById(R.id.eq_detail_magnitude);
+            TextView longitudeTextView = (TextView) findViewById(R.id.eq_detail_longitude);
+            TextView latitudeTextView = (TextView) findViewById(R.id.eq_detail_latitude);
+            TextView placeTextView = (TextView) findViewById(R.id.eq_detail_place);
+            TextView dateTimeTextView = (TextView) findViewById(R.id.eq_detail_date_time);
+
+            magnitudeTextView.setText(String.valueOf(earthquakeEntity.getMagnitude()));
+            longitudeTextView.setText(earthquakeEntity.getLongitude());
+            latitudeTextView.setText(earthquakeEntity.getLatitude());
+            placeTextView.setText(earthquakeEntity.getPlace());
+            dateTimeTextView.setText(String.valueOf(earthquakeEntity.getDateTime()));
         }
     }
 }

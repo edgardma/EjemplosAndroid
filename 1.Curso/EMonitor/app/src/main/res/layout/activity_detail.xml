@@ -1,20 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="64dp"
     android:paddingTop="16dp"
+    android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <TextView
-        android:id="@+id/eq_detail_text_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="36sp"/>
+        android:paddingTop="@dimen/detail_view_magnitude_layout_vertical_padding"
+        android:paddingBottom="@dimen/detail_view_magnitude_layout_bottom_padding"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/eq_detail_magnitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="72sp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/design_default_color_primary_dark"
+            tools:text="4.6"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_gravity="bottom"
+            android:text="@string/richter" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/detail_activity_icon_right_margin"
+            android:layout_marginEnd="@dimen/detail_activity_icon_right_margin"
+            android:src="@drawable/ic_location_on_black_18dp"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/longitude" />
+
+                <TextView
+                    android:id="@+id/eq_detail_longitude"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="@string/longitude" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/detail_activity_latitude_margin_top"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/latitude" />
+
+                <TextView
+                    android:id="@+id/eq_detail_latitude"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="@string/latitude" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_activity_view_height"
+                android:layout_marginTop="@dimen/detail_activity_view_margin_top"
+                android:background="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/detail_activity_icon_right_margin"
+            android:layout_marginEnd="@dimen/detail_activity_icon_right_margin"
+            android:src="@drawable/ic_info_black_18dp"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/eq_detail_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="97 km S of Wonosari, Indonesia"
+                android:paddingTop="@dimen/detail_activity_vertical_padding"
+                android:paddingBottom="@dimen/detail_activity_vertical_padding"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_activity_view_height"
+                android:layout_marginTop="@dimen/detail_activity_view_margin_top"
+                android:background="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/detail_activity_icon_right_margin"
+            android:layout_marginEnd="@dimen/detail_activity_icon_right_margin"
+            android:src="@drawable/ic_schedule_black_18dp"
+            android:layout_gravity="center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/eq_detail_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="17 de febrero 2021"
+                android:paddingTop="@dimen/detail_activity_vertical_padding"
+                android:paddingBottom="@dimen/detail_activity_vertical_padding"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_activity_view_height"
+                android:layout_marginTop="@dimen/detail_activity_view_margin_top"
+                android:background="@color/black"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    
+</LinearLayout>
