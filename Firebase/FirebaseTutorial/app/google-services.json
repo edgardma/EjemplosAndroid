@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "535534804902",
+    "project_id": "fir-tutorial-edgardma-2021",
+    "storage_bucket": "fir-tutorial-edgardma-2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535534804902:android:9c6ce75ac8cc5266357967",
+        "android_client_info": {
+          "package_name": "pe.com.dyd.firebasetutorial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535534804902-vusct2fgrb61b6ek8prhss9b0gbp0848.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH9A1ytB5BO89CgilrjEGOuE1ALW_iomw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535534804902-vusct2fgrb61b6ek8prhss9b0gbp0848.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
