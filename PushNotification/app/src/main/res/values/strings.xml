@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PushNotification</string>
+    <string name="start_notification">START NOTIFICATION</string>
+    <string name="after_notification_clicked">After Notification Clicked</string>
+</resources>
