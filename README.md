@@ -2,11 +2,15 @@
 
 ## Ejemplos:
 
-#### Splash Screen en Android con Kotlin
+#### Splash Screen con Kotlin
 
 [SPLASH SCREEN en Android Studio con Kotlin [2020] | Tutorial Android | Español | MoureDev - YouTube](https://www.youtube.com/watch?v=ksaaMt8Lo6U)
 
 [Como hacer una splash screen correctamente, sin bitmap - YouTube](https://www.youtube.com/watch?v=mhh9V9wOtz4)
+
+#### Push Notification con Kotlin
+
+[Android Notifications | Simple Notification | Android Studio | Kotlin - YouTube](https://www.youtube.com/watch?v=hwzvlDNCm_o)
 
 ## Recursos
 
