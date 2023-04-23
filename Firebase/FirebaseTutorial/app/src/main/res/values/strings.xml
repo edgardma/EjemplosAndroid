@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Firebase</string>
+    <string name="prefs_file">pe.com.dyd.firebasetutorial.PREFERENCE_FILE_KEY</string>
+    <string name="default_web_client_id2">535534804902-vusct2fgrb61b6ek8prhss9b0gbp0848.apps.googleusercontent.com</string>
 </resources>
